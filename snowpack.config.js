@@ -15,7 +15,7 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    /* ... */
+    baseUrl: '/link-stations-power'
   },
   proxy: {
     /* ... */
