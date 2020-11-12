@@ -1,6 +1,8 @@
 {
   "imports": {
     "@material-ui/core/Box": "./@material-ui/core/Box.js",
+    "@material-ui/core/Card": "./@material-ui/core/Card.js",
+    "@material-ui/core/CardContent": "./@material-ui/core/CardContent.js",
     "@material-ui/core/List": "./@material-ui/core/List.js",
     "@material-ui/core/ListItem": "./@material-ui/core/ListItem.js",
     "@material-ui/core/ListItemText": "./@material-ui/core/ListItemText.js",
