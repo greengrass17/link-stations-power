@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import stations from './stations.json';
 import points from './points.json';
-import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import isEqual from 'lodash/isEqual';
 import List from '@material-ui/core/List';
@@ -11,10 +10,9 @@ import getBestStation from './utils/getBestStation';
 import Typography from '@material-ui/core/Typography';
 import Station from './Station';
 import Point from './Point';
-
-const WorkSpace = styled('svg')({
-  height: '100vh',
-});
+import Map from './Map';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const pointsWithStation = points.map((point) => ({
   ...getBestStation(point),
@@ -29,8 +27,8 @@ function App() {
 
   return (
     <Box display="flex">
-      <Box>
-        <WorkSpace viewBox="-20 -20 150 150">
+      <Box p={1}>
+        <Map start={-20} end={150} step={10}>
           {stations.map((station) => (
             <Station
               info={station}
@@ -42,15 +40,31 @@ function App() {
           {pointsWithStation.map((point) => (
             <Point
               info={point}
-              selected={selectedPoint && isEqual(point.position, selectedPoint.position)
+              selected={
+                selectedPoint && isEqual(point.position, selectedPoint.position)
               }
               onClick={setSelectedPoint}
             />
           ))}
-        </WorkSpace>
+        </Map>
       </Box>
       <Box flexGrow="1" p={2}>
-        <Typography variant="h3">Best Link Station</Typography>
+        <Typography variant="h4">Best Link Station</Typography>
+        <Card variant="outlined">
+          <CardContent>
+            <Typography>About the map</Typography>
+            <ul>
+              <Typography component="li">
+                Stations: <Typography component="span" color="primary">Blue circle </Typography> with range as the radius and position as the center
+              </Typography>
+              <Typography component="li">
+                Points: <Typography component="span" color="secondary">Red dot </Typography> with position on the map
+              </Typography>
+              <Typography component="li">You can click on the point to highlight it, its best station and the power from that station</Typography>
+              <Typography component="li">You can also select the point from the list below</Typography>
+            </ul>
+          </CardContent>
+        </Card>
         <List>
           {pointsWithStation.map((point) => (
             <ListItem
